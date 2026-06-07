@@ -1,18 +1,6 @@
 hash-format = "sha256"
 
 [[files]]
-file = ".claude-checkpoint.md"
-hash = "41500c08dfa52e5a50f7e6a0436a84c8a1fecc8784d0a914fd8eaf8024cee712"
-
-[[files]]
-file = "CLAUDE.md"
-hash = "8e081e62a4cc32bd4d1394ef556f7bf921123ef627df388abda3b3861c44b971"
-
-[[files]]
-file = "README.md"
-hash = "9cec623ad12fd5110d94db3d143f87455139d2d61e2ab46d121b80edab6d3242"
-
-[[files]]
 file = "config/CustomNpcs.cfg"
 hash = "fac0c330a702d053dc332f099772bcfde303d9b0e26fc230c43071e3c024066d"
 

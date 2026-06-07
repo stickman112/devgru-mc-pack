@@ -1,0 +1,10 @@
+# Repo and meta files - not part of the installable pack.
+# Patterns are anchored to the pack root (leading /) so nested pack files
+# (e.g. a mod's own config/.../README.md) are NOT matched.
+/.git/
+/.gitignore
+/.packwizignore
+/.claude-checkpoint.md
+/CLAUDE.md
+/README.md
+/INSTALLED_MODS.md
