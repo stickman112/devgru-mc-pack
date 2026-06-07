@@ -1,0 +1,13 @@
+name = "Abridged"
+filename = "abridged-2.0.0-forge-1.20.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "8f459c299da47ab0382267e88805ea3cc0dcd959"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 6745463
+project-id = 948999

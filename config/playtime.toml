@@ -1,0 +1,291 @@
+
+[features]
+	#Enable the claims system (claim limits per rank, /claims command).
+	#Set to false if your server doesn't use OpenPAC claims.
+	claimsEnabled = true
+	#Enable the forceload system (forceload limits per rank).
+	#Set to false if your server doesn't use chunk forceloading.
+	forceloadsEnabled = true
+
+[afk]
+	#Ticks of no sufficient activity before a player is considered AFK.
+	#Default: 1200 (1 minute at 20 TPS). Player must produce at least
+	#afkMinSignals distinct signals within this window to stay active.
+	#Range: 200 ~ 72000
+	timeoutTicks = 1200
+	#Ticks between each AFK/activity check.
+	#Default: 20 (once per second).
+	#Range: 1 ~ 200
+	checkInterval = 20
+	#Minimum camera rotation (degrees) to count as a rotation signal.
+	#Default: 2.0.
+	#Range: 0.1 ~ 45.0
+	lookThresholdDegrees = 2.0
+	#Minimum distance (blocks) the player must move to count as a position signal.
+	#Prevents minecart/water drift from counting. Default: 0.15.
+	#Range: 0.01 ~ 10.0
+	moveThresholdBlocks = 0.15
+	#Minimum number of distinct activity signal types required within the
+	#timeout window to prove the player is active.
+	#Server signal types (5): rotation, position, hotbar, sprint, interaction.
+	#Client signal types (7, require Playtime mod on client): keyboard, mouseMove,
+	#mouseClick, gui, scroll, inventory, windowFocus.
+	#Higher values = harder to AFK-bot, but values >5 effectively require the mod
+	#on the client. Default: 3. Range: 1-12.
+	#Range: 1 ~ 12
+	minSignals = 3
+	#Ticks between repeated AFK notifications to the player.
+	#Default: 6000 (5 minutes).
+	#Range: 600 ~ 72000
+	notifyInterval = 6000
+
+	[afk.signal]
+		#Count rotation (yaw/pitch) changes as an AFK signal. Default: true.
+		rotation = true
+		#Count position (player movement) changes as an AFK signal. Default: true.
+		position = true
+		#Count hotbar slot changes as an AFK signal. Default: true.
+		hotbar = true
+		#Count sprint toggle as an AFK signal. Default: true.
+		sprint = true
+		#Count world interactions (block break/place, attack, use, chat) as a signal.
+		#Default: true.
+		interaction = true
+		#Count raw keyboard input (any key press) as a signal. Requires Playtime mod
+		#on the client. Catches macros that move without pressing real keys.
+		#Default: true.
+		keyboard = true
+		#Count raw mouse movement (cursor delta) as a signal. Requires Playtime mod
+		#on the client. More sensitive than server-side rotation sampling.
+		#Default: true.
+		mouseMove = true
+		#Count raw mouse button presses as a signal. Requires Playtime mod on client.
+		#Catches GUI clicks the server doesn't see. Default: true.
+		mouseClick = true
+		#Count GUI screen open events as a signal. Requires Playtime mod on client.
+		#Default: true.
+		gui = true
+		#Count mouse scroll events as a signal. Requires Playtime mod on client.
+		#Default: true.
+		scroll = true
+		#Count inventory slot changes (item drag/move) as a signal. Requires Playtime
+		#mod on client. Default: true.
+		inventory = true
+		#Count Minecraft window focus as a signal. Requires Playtime mod on client.
+		#Counts only when the window is the OS-foreground window. Default: true.
+		windowFocus = true
+
+	[afk.client]
+		#If true, client-side signals (keyboard/mouse/etc.) only count when the
+		#Minecraft window is OS-focused. Defeats jiggler scripts that act on a
+		#minimised game. Default: true.
+		requireFocus = true
+		#Maximum client signal packets accepted per player per second. Excess packets
+		#are dropped silently. Default: 5.
+		#Range: 1 ~ 60
+		rateLimitPerSecond = 5
+		#Minimum number of distinct keys that must be pressed within an AFK timeout
+		#window for keyboard signal to count toward heuristics. Defeats one-key macros.
+		#Default: 2.
+		#Range: 1 ~ 20
+		minUniqueKeys = 2
+
+	[afk.antispoof]
+		#Enable client/server signal correlation. If client claims activity but
+		#server sees no rotation/position changes for a sustained period, the
+		#player is flagged as suspect and client signals stop counting.
+		#Default: true.
+		enabled = true
+		#Number of consecutive 'client active, server silent' samples required
+		#before the player is treated as spoofing. Default: 30 (~30 seconds at
+		#the default 1-second AFK check interval).
+		#Range: 5 ~ 600
+		threshold = 30
+
+	[afk.heuristics]
+		#Enable advanced heuristic AFK analysis.
+		#When enabled, even players producing enough basic signals (rotation, position, etc.)
+		#will be flagged AFK if their patterns look robotic (AFK pools, mouse macros, etc.).
+		#Default: true.
+		enabled = true
+		#Number of samples in the rolling analysis window.
+		#Each sample is taken once per afk.checkInterval ticks.
+		#Default: 120 (= 2 minutes at 1-second check interval).
+		#Range: 30 ~ 600
+		windowSize = 120
+		#Minimum number of samples before heuristic analysis kicks in.
+		#Players won't be flagged until this many samples are collected.
+		#Default: 20 (~20 seconds).
+		#Range: 5 ~ 120
+		minSamples = 20
+		#Composite suspicion score threshold (0.0–1.0) above which a player
+		#is overridden to AFK even if basic signals are present.
+		#Lower = more aggressive detection, higher = more lenient.
+		#Default: 0.55.
+		#Range: 0.1 ~ 1.0
+		threshold = 0.55
+		#Weight of the movement pattern analyzer in the composite score.
+		#Detects AFK pools, circle-walking, rail loops.
+		#Default: 1.0.
+		#Range: 0.0 ~ 5.0
+		weightMovement = 1.0
+		#Weight of the camera/rotation analyzer in the composite score.
+		#Detects mouse macro wiggling, sine-wave sweeps.
+		#Default: 1.0.
+		#Range: 0.0 ~ 5.0
+		weightCamera = 1.0
+		#Weight of the interaction diversity analyzer in the composite score.
+		#Detects auto-clickers, repetitive same-block interactions.
+		#Default: 0.8.
+		#Range: 0.0 ~ 5.0
+		weightInteraction = 0.8
+		#Weight of the timing pattern analyzer in the composite score.
+		#Detects robotic timing regularity in activity events.
+		#Default: 0.7.
+		#Range: 0.0 ~ 5.0
+		weightTiming = 0.7
+		#How often (in AFK check cycles) to run the full heuristic evaluation.
+		#Samples are always collected, but the expensive analysis runs every N cycles.
+		#Default: 5 (= every 5 seconds at 1-second check interval).
+		#Lower = more responsive but uses more CPU. Higher = less CPU.
+		#Range: 1 ~ 30
+		evalInterval = 5
+
+[saving]
+	#Ticks between periodic data saves.
+	#Default: 6000 (5 minutes).
+	#Range: 600 ~ 72000
+	intervalTicks = 6000
+	#Ticks between flushing active session time to totals.
+	#Default: 600 (30 seconds).
+	#Range: 100 ~ 6000
+	flushIntervalTicks = 600
+
+[backup]
+	#Enable rotating backup system.
+	enabled = true
+	#Ticks between backup eligibility checks.
+	#Default: 12000 (10 minutes).
+	#Range: 1200 ~ 72000
+	checkIntervalTicks = 12000
+
+[cleanup]
+	#Enable automatic inactivity-based claim cleanup.
+	enabled = true
+	#Ticks after server start before running the first cleanup check.
+	#Default: 6000 (5 minutes).
+	#Range: 600 ~ 72000
+	delayTicks = 6000
+
+[integration]
+	#Enable LuckPerms group sync on rank change.
+	luckpermsEnabled = true
+	#Run '/lp sync' after rank changes (for tab reload).
+	luckpermsForceSync = true
+	#Sync LuckPerms rank groups on every login.
+	#Removes ALL rank groups (including legacy KubeJS groups) and sets only the correct one.
+	#Ensures imported players are properly migrated to the new rank system.
+	loginRankSync = true
+	#Enable OpenPAC integration for claim cleanup.
+	opacEnabled = true
+	#Default OPAC claim color hex for first-join players.
+	defaultClaimColorHex = "7F7F7F"
+
+[rankup]
+	#If true, commands defined in each rank's 'commands' list in ranks.json
+	#will be executed when a player claims that rank.
+	#Commands should include the leading /, e.g. "/give @p diamond".
+	#The placeholder @p is replaced with the ranking-up player's name.
+	runCommandOnRankup = false
+	#Broadcast rank-up messages to all players.
+	broadcast = true
+	#Sound resource to play on rank-up.
+	sound = "minecraft:entity.player.levelup"
+	#Volume of the rank-up sound.
+	#Range: 0.0 ~ 2.0
+	soundVolume = 1.0
+	#Pitch of the rank-up sound.
+	#Range: 0.1 ~ 2.0
+	soundPitch = 1.2
+	#Title fade-in ticks.
+	#Range: 0 ~ 100
+	titleFadeIn = 10
+	#Title stay ticks.
+	#Range: 0 ~ 200
+	titleStay = 60
+	#Title fade-out ticks.
+	#Range: 0 ~ 100
+	titleFadeOut = 20
+
+[commands]
+	#Permission level required for /playtimeadmin commands (2 = op).
+	#Range: 0 ~ 4
+	adminPermissionLevel = 2
+	#Number of ranks to show per page in /ranks.
+	#Default: 16.
+	#Range: 1 ~ 100
+	ranksPageSize = 16
+	#Number of players to show per page in /playtime top.
+	#Default: 10.
+	#Range: 1 ~ 100
+	topPageSize = 10
+	#Minimum rank ID required to use the /playtime displayrank command.
+	#Players below this rank cannot set a custom display rank.
+	#Set to "" to allow all ranks. Default: "technician"
+	displayRankMinimumId = "technician"
+
+[firstJoin]
+	#Broadcast a welcome message when a player joins for the first time.
+	broadcast = true
+
+[integrated-ranks]
+	#Chat message format used by the integrated rank handler when LuckPerms is disabled.
+	#Placeholders: {rank-display} = formatted rank+name, {msg} = the chat message.
+	#Default: "<{rank-display}> {msg}"
+	chatMessageFormat = "<{rank-display}> {msg}"
+	#Chat message format for players whose rank is BELOW the displayRankMinimum.
+	#Placeholders: {username} = the player's name, {msg} = the chat message.
+	#Only used when displayRankMinimum is set. Default: "<{username}> {msg}"
+	chatMessageFormatNoRank = "<{username}> {msg}"
+	#How the rank display is formatted within the chat message.
+	#Placeholders: {rank} = the coloured rank name, {username} = the player's name.
+	#Default: "{rank} {username}"
+	rankDisplayFormat = "{rank} {username}"
+	#Enable hex colour (&#RRGGBB) and gradient parsing in integrated chat.
+	#Applies to rank colours in the chat message when using the integrated handler.
+	#Default: true
+	hexFormattingEnabled = true
+	#The minimum rank ID required for a player's rank to be displayed in chat.
+	#Players below this rank will use the chatMessageFormatNoRank format instead.
+	#Set to "" (empty) to always show rank for all players.
+	#Example: "technician" means only Technician and above show rank prefix.
+	#Default: "" (show rank for everyone)
+	displayRankMinimum = ""
+
+	[integrated-ranks.style]
+		#Minimum rank ID for BOLD styling on the rank display in chat.
+		#Players at or above this rank get their rank name shown in bold.
+		#Set to "" to disable (bold is already baked into phase-final rank colours).
+		#Default: "" (disabled — bold comes from rank fallbackColor instead)
+		boldMinimumRank = ""
+		#Minimum rank ID for UNDERLINE styling on the rank display in chat.
+		#Set to "" to disable underline for all ranks.
+		#Default: "" (disabled)
+		underlineMinimumRank = ""
+		#Minimum rank ID for ITALIC styling on the rank display in chat.
+		#Set to "" to disable italic for all ranks.
+		#Default: "" (disabled)
+		italicMinimumRank = ""
+		#Minimum rank ID for STRIKETHROUGH styling on the rank display in chat.
+		#Set to "" to disable strikethrough for all ranks.
+		#Default: "" (disabled)
+		strikethroughMinimumRank = ""
+		#Minimum rank ID for OBFUSCATED (magic text) styling on the rank display.
+		#Set to "" to disable obfuscated for all ranks.
+		#Default: "" (disabled)
+		obfuscatedMinimumRank = ""
+		#If true, threshold-based styles (bold/underline/etc.) are also applied
+		#to the player's username, not just the rank name.
+		#Default: false
+		applyToUsername = false
+

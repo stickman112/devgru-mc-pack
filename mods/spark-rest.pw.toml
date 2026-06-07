@@ -1,0 +1,8 @@
+name = "spark-rest"
+filename = "spark_rest-1.1.0.jar"
+side = "server"
+
+[download]
+url = "https://github.com/stickman112/Spark-REST/releases/download/v1.1.0/spark_rest-1.1.0.jar"
+hash-format = "sha256"
+hash = "dd9c2cf84f7d12b69701c906518888bc6a470cd74f7ecc36d00affaedf41ce89"

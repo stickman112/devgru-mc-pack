@@ -1,0 +1,11 @@
+name = "DEVGRU MC"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "15da0f43a8aea96800253a91f202296c6e8fe0c98291a260d0e873fddcd5dcde"
+
+[versions]
+forge = "47.4.10"
+minecraft = "1.20.1"

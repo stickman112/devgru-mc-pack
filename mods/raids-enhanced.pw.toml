@@ -1,0 +1,13 @@
+name = "Raids:Enhanced"
+filename = "raidsenhanced-1.0.2-1.20.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "4e403354d71c2812b7c6d78963f815976a12da0d"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7676060
+project-id = 1467121

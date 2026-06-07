@@ -1,0 +1,13 @@
+name = "APTweaks: Items (11.x Classic)"
+filename = "adaptive_performance_tweaks_items_1.20.1-11.6.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "52b58d36ca830d684119a4ae0a2c16d310b62ba3"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7736364
+project-id = 561439

@@ -1,0 +1,13 @@
+name = "Easy NPC: Config UI"
+filename = "easy_npc_config_ui-forge-1.20.1-6.17.0.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "b12fa08f3c31ffb960297724846e7d5f43223dd1"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8140212
+project-id = 1214728

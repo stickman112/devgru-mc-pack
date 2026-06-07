@@ -1,0 +1,13 @@
+name = "APTweaks: Gamerules (11.x Classic)"
+filename = "adaptive_performance_tweaks_gamerules_1.20.1-11.6.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "da518957f38005acf1774d38013f5ca9f59e4805"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7736356
+project-id = 561137

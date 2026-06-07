@@ -1,0 +1,13 @@
+name = "IntegratedPlaytime"
+filename = "playtime-1.2.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "d112df102fd0a1f4f357be58debed4fdec58eeb3"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8024646
+project-id = 1487585

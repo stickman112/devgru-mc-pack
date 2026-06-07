@@ -1,0 +1,13 @@
+name = "Dynamic Player and Weapon Progression / Difficulty"
+filename = "dynamic_progression_and_difficulty-forge-1.20.1-5.2.0.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "ff99b16f12953260ff5dab531ff0f98e0e4026cb"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 5131058
+project-id = 650016
