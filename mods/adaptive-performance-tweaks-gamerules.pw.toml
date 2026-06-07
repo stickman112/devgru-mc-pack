@@ -3,11 +3,11 @@ filename = "adaptive_performance_tweaks_gamerules_1.20.1-11.6.1.jar"
 side = "both"
 
 [download]
-hash-format = "sha1"
-hash = "da518957f38005acf1774d38013f5ca9f59e4805"
-mode = "metadata:curseforge"
+url = "https://cdn.modrinth.com/data/Rd89yO7d/versions/LEZTKCzX/adaptive_performance_tweaks_gamerules_1.20.1-11.6.1.jar"
+hash-format = "sha512"
+hash = "cfe47e0fdd6f63bd9809e58bac35779e3bc54cd4c4953565f8335349b1ee699e744a873a3dc2e63c1652d01712d5d3615afe7a0d9eddde4e2b3f6269847eaf49"
 
 [update]
-[update.curseforge]
-file-id = 7736356
-project-id = 561137
+[update.modrinth]
+mod-id = "Rd89yO7d"
+version = "LEZTKCzX"

@@ -3,11 +3,11 @@ filename = "adaptive_performance_tweaks_1.20.1-11.6.1.jar"
 side = "both"
 
 [download]
-hash-format = "sha1"
-hash = "9904caf1bc2d1de43e67290944aa526e2ff53b96"
-mode = "metadata:curseforge"
+url = "https://cdn.modrinth.com/data/kLawTYXp/versions/grkRfoRH/adaptive_performance_tweaks_1.20.1-11.6.1.jar"
+hash-format = "sha512"
+hash = "c7f18a173698c1e245704725a84fe320858c7e273aa51c15b4f9fbb40316a84f3dfc4da801da6b073bac0a118d3b64538460980db40d9e2bf639100b8fc7bdd2"
 
 [update]
-[update.curseforge]
-file-id = 7736370
-project-id = 450269
+[update.modrinth]
+mod-id = "kLawTYXp"
+version = "grkRfoRH"

@@ -3,11 +3,11 @@ filename = "adaptive_performance_tweaks_spawn_1.20.1-11.6.1.jar"
 side = "both"
 
 [download]
-hash-format = "sha1"
-hash = "ed88f74929ef22c5603571b5bba64cac83175e12"
-mode = "metadata:curseforge"
+url = "https://cdn.modrinth.com/data/217PsbJI/versions/CAThdrYi/adaptive_performance_tweaks_spawn_1.20.1-11.6.1.jar"
+hash-format = "sha512"
+hash = "6a7e6495bcf8005d6fa31977581eebcfbd76616e0f28e0cf1b07e74f2c11a54631e46ba3189bf8c3a4755650ecbebf73c2698b969cf96c9717a577369a1604b3"
 
 [update]
-[update.curseforge]
-file-id = 7736367
-project-id = 573708
+[update.modrinth]
+mod-id = "217PsbJI"
+version = "CAThdrYi"

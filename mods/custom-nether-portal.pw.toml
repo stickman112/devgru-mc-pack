@@ -1,0 +1,13 @@
+name = "Custom Nether Portal"
+filename = "custom_nether_portals-forge-1.20.1-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/2OCozLqc/versions/HqesAUHS/custom_nether_portals-forge-1.20.1-1.0.0.jar"
+hash-format = "sha512"
+hash = "af54530020c0196c715cbfbb23619aae84e745a1a3497b500d76c223034bdb1b559a56f9ba862cec58988fe735088999a23b972866e6cb0c215d6a2639a2728b"
+
+[update]
+[update.modrinth]
+mod-id = "2OCozLqc"
+version = "HqesAUHS"

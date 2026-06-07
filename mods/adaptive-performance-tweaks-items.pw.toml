@@ -3,11 +3,11 @@ filename = "adaptive_performance_tweaks_items_1.20.1-11.6.1.jar"
 side = "both"
 
 [download]
-hash-format = "sha1"
-hash = "52b58d36ca830d684119a4ae0a2c16d310b62ba3"
-mode = "metadata:curseforge"
+url = "https://cdn.modrinth.com/data/z3TjJLQ0/versions/i25Vc8Bg/adaptive_performance_tweaks_items_1.20.1-11.6.1.jar"
+hash-format = "sha512"
+hash = "047081604ea5116f0f82a2641b4d56b32c96a4c946a30d47bcf115ee6380a03d6a85988e193e2d2551c3e7e7f74efaed2f91fc874b688218b071b4416dee9ffe"
 
 [update]
-[update.curseforge]
-file-id = 7736364
-project-id = 561439
+[update.modrinth]
+mod-id = "z3TjJLQ0"
+version = "i25Vc8Bg"

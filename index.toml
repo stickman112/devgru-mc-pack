@@ -1,6 +1,18 @@
 hash-format = "sha256"
 
 [[files]]
+file = ".claude-checkpoint.md"
+hash = "41500c08dfa52e5a50f7e6a0436a84c8a1fecc8784d0a914fd8eaf8024cee712"
+
+[[files]]
+file = "CLAUDE.md"
+hash = "8e081e62a4cc32bd4d1394ef556f7bf921123ef627df388abda3b3861c44b971"
+
+[[files]]
+file = "README.md"
+hash = "9cec623ad12fd5110d94db3d143f87455139d2d61e2ab46d121b80edab6d3242"
+
+[[files]]
 file = "config/CustomNpcs.cfg"
 hash = "fac0c330a702d053dc332f099772bcfde303d9b0e26fc230c43071e3c024066d"
 
@@ -955,32 +967,27 @@ metafile = true
 
 [[files]]
 file = "mods/adaptive-performance-tweaks-core.pw.toml"
-hash = "0b56d911d513501cd1684c5aa98c4a3293129d8465ee7252c724bd75632e6d96"
+hash = "f21dd559a650443f0a65edd6afd1c63e98302255f0615c018e7341f53ad6977d"
 metafile = true
 
 [[files]]
 file = "mods/adaptive-performance-tweaks-gamerules.pw.toml"
-hash = "7d09fc869c25d001360652bc6a60a121fa601e7a8ac479153672367474af2895"
+hash = "1831a28b8287c0194f824a93534962c9104759626ed0a437ed527ddf6a893c22"
 metafile = true
 
 [[files]]
 file = "mods/adaptive-performance-tweaks-items.pw.toml"
-hash = "6e80d3b3056008a0f3a4a39597cc613403be0c4608dcc1292ecb522ebaf281e9"
-metafile = true
-
-[[files]]
-file = "mods/adaptive-performance-tweaks-player.pw.toml"
-hash = "6e615b7a34d1b2b241c35e7c9f41c3f73440567c9d6ea0adbb4097ad76e0d65a"
+hash = "0273b428f1e255bac1f26e82e0d472678cfb5a9fcb4e27f30cc932803b4aff29"
 metafile = true
 
 [[files]]
 file = "mods/adaptive-performance-tweaks-spawn.pw.toml"
-hash = "0d4630b363ec592d2ef41e9a57e326c605e5e0d1e748fd0f3ce39de3445820dc"
+hash = "73cf50edfc2a65790b8efe02a1d5cb5e391fb452c2a92a3c2bde4759b61abab9"
 metafile = true
 
 [[files]]
 file = "mods/adaptive-performance-tweaks.pw.toml"
-hash = "adad45e10e83cd0460f3c5bcc2d767e6264ee8c5dfa872d2370b73cab1252eb9"
+hash = "1824cda3edb368179caf73ccb25e6bb549e9b7d05906616df1b191a91ae09c81"
 metafile = true
 
 [[files]]
@@ -1034,8 +1041,8 @@ hash = "95e1e53b02444a363aef8e309fd75422bae1d8844ddf681ba8750f8e6d3e1942"
 metafile = true
 
 [[files]]
-file = "mods/better-weaponry-better-combat.pw.toml"
-hash = "493176e5445eae1fb89cfdb3327691e1d140a6638c81598bda50ce12c3cba247"
+file = "mods/better-weaponry.pw.toml"
+hash = "b773ab1dae0aaa5843b52736a62b0abcabf4ef5e9329edce33d8eea42f5fb4db"
 metafile = true
 
 [[files]]
@@ -1144,8 +1151,8 @@ hash = "1315cd56b0b4a5b3d53374cebf4f1f3cd0546b05058740847bd226c1d1ccab39"
 metafile = true
 
 [[files]]
-file = "mods/custom-nether-portals.pw.toml"
-hash = "6d51f18c1c900aa37954361b0a69f185c06abe137fda781068fa74763ea19aed"
+file = "mods/custom-nether-portal.pw.toml"
+hash = "d29be018d7259da1da619ca2d1329399d2c5002fd6d88d6965cc5680fbdb0e11"
 metafile = true
 
 [[files]]
@@ -1219,18 +1226,13 @@ hash = "f29e468a2aa1801bc8d9fdb0608b148d3e6eca97b25ef146a3e5d26bdff03f89"
 metafile = true
 
 [[files]]
-file = "mods/enhanced-boss-bars.pw.toml"
-hash = "4afa4f563dccc6d5099b02754441c8aba29084c8b99802d7368e4c369d9ecbf2"
-metafile = true
-
-[[files]]
 file = "mods/enhanced-celestials.pw.toml"
 hash = "a5306e8b8818ae6ade2941a0a3caed2b56756aeb812997cdb6210dc8ecb1b372"
 metafile = true
 
 [[files]]
 file = "mods/entityculling.pw.toml"
-hash = "c3949a05316d204a61e901c10b1e62c3dabf7cfd4373ece8152187545bed564c"
+hash = "8775106c0b9c8e32a48cd12a62acddd9716b224515ab5c8a07314a239315e1ba"
 metafile = true
 
 [[files]]
