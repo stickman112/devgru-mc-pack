@@ -1325,7 +1325,7 @@ metafile = true
 
 [[files]]
 file = "mods/immersive-optimization.pw.toml"
-hash = "db1d8dfc5374fdfe515b40fda2cfc775160442e2cd63a1b8d083267065f824be"
+hash = "ab8f646de4aef06e874fc7dda23912dfa77f002529f10e97082f78009ff9c329"
 metafile = true
 
 [[files]]
@@ -1390,7 +1390,7 @@ metafile = true
 
 [[files]]
 file = "mods/just-enough-mekanism-multiblocks.pw.toml"
-hash = "4cc78cedebc917f8063a01d5c920a324e0889cdaf35beb63d4a8313d4607cbc5"
+hash = "60776b0996f7fa66305b9d6143c13b4adf5aebaf31fd3be19863d8964d12c23f"
 metafile = true
 
 [[files]]
@@ -1421,6 +1421,11 @@ metafile = true
 [[files]]
 file = "mods/lootr.pw.toml"
 hash = "e8b4876d403b4f4daab64bad9704a5b271a33031d1ff8d19d23ebd1e3b8dd39a"
+metafile = true
+
+[[files]]
+file = "mods/luckperms.pw.toml"
+hash = "f8b4210300a8f2ce76a2329de37f2e671ac5dfeca17018528cadb333b019a814"
 metafile = true
 
 [[files]]
@@ -1685,7 +1690,7 @@ metafile = true
 
 [[files]]
 file = "mods/when-dungeons-arise.pw.toml"
-hash = "5e692eaff3303988ab41f765070feff25b42dce4a90c23cc696dfbb8a450c392"
+hash = "0cb70caa22009a495a64a4332480b5ae80cb7fc7ba34c0a48ab8aff7df20b4f7"
 metafile = true
 
 [[files]]
