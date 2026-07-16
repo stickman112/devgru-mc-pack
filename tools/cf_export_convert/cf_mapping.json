@@ -1,0 +1,23 @@
+{
+  "_comment": "CurseForge id mapping for cf_export_convert. Each mapped mod is a Modrinth-sourced side=both jar that packwiz bundles into overrides/mods on a curseforge export; the converter replaces the bundled jar with a CF manifest reference at the exact pinned version (matched by exact filename, Gate 1 2026-07-15). unmapped mods have no CF project and cannot become references. Bump manifest.version per published release.",
+  "manifest": {
+    "name": "DEVGRU MC",
+    "version": "1.20.1-r1",
+    "author": "stickman112"
+  },
+  "mapped": [
+    { "slug": "adaptive-performance-tweaks-core",      "filename": "adaptive_performance_tweaks_core_1.20.1-11.6.1.jar",      "projectID": 561087,  "fileID": 7736354 },
+    { "slug": "adaptive-performance-tweaks-spawn",     "filename": "adaptive_performance_tweaks_spawn_1.20.1-11.6.1.jar",     "projectID": 573708,  "fileID": 7736367 },
+    { "slug": "adaptive-performance-tweaks",           "filename": "adaptive_performance_tweaks_1.20.1-11.6.1.jar",           "projectID": 450269,  "fileID": 7736370 },
+    { "slug": "adaptive-performance-tweaks-gamerules", "filename": "adaptive_performance_tweaks_gamerules_1.20.1-11.6.1.jar", "projectID": 561137,  "fileID": 7736356 },
+    { "slug": "adaptive-performance-tweaks-items",     "filename": "adaptive_performance_tweaks_items_1.20.1-11.6.1.jar",     "projectID": 561439,  "fileID": 7736364 },
+    { "slug": "attributes",                            "filename": "puffish_attributes-0.8.2-1.20-forge.jar",                "projectID": 991341,  "fileID": 7551331 },
+    { "slug": "custom-nether-portal",                  "filename": "custom_nether_portals-forge-1.20.1-1.0.0.jar",           "projectID": 1302224, "fileID": 6741679 },
+    { "slug": "default-skill-trees",                   "filename": "default_skill_trees-1.1.jar",                            "projectID": 1074229, "fileID": 5852412 },
+    { "slug": "entityculling",                         "filename": "entityculling-forge-1.10.2-mc1.20.1.jar",                "projectID": 448233,  "fileID": 8053757 },
+    { "slug": "skills",                                "filename": "puffish_skills-0.18.1-1.20-forge.jar",                   "projectID": 835091,  "fileID": 8408194 }
+  ],
+  "unmapped": [
+    { "slug": "better-weaponry", "filename": "better_weaponry-1.1.3-forge-1.20.1.jar", "reason": "No CurseForge project (Modrinth-exclusive). Cannot become a CF manifest reference; not on the Approved Non-CurseForge Mods list, so it cannot ship bundled in a published CF pack either." }
+  ]
+}
