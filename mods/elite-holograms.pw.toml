@@ -1,0 +1,13 @@
+name = "Elite Holograms"
+filename = "EliteHolograms-1.20.1-1.1.0.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/IewHV892/versions/eLvPzjlB/EliteHolograms-1.20.1-1.1.0.jar"
+hash-format = "sha512"
+hash = "7aa555790f9d18401d9aa586d4d565bcde7d57f91c393e02d4b88a77a922527a814891fecef44690288c3e73f4817f8a495665f2e36c491f5ab9fdf62eca2566"
+
+[update]
+[update.modrinth]
+mod-id = "IewHV892"
+version = "eLvPzjlB"

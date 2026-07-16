@@ -1019,6 +1019,11 @@ hash = "9638d8a308563842fd989970919a51f37ed1bcc82372bff47fc5a5c2e6de738e"
 metafile = true
 
 [[files]]
+file = "mods/attributes.pw.toml"
+hash = "6cf3028c6bbba1936405cd988a11626069676e678bc3caf440fe216bb0931f8c"
+metafile = true
+
+[[files]]
 file = "mods/balm.pw.toml"
 hash = "fe46309d954710019e07813bcdc6db2c775b07795f3628cb559610adcb129a9a"
 metafile = true
@@ -1164,6 +1169,11 @@ hash = "e50740a50bdeef70e78fc991fbc8eee9dbb4bacd11f5e7cbf10f4c46cb5fd0aa"
 metafile = true
 
 [[files]]
+file = "mods/default-skill-trees.pw.toml"
+hash = "bd5044206dc78d8b5dba24aa8f64ef27f97da205e464ed678d818f2efa29c5a6"
+metafile = true
+
+[[files]]
 file = "mods/dramatic-doors.pw.toml"
 hash = "c4bb3e4ea76603fca7b1bf7b7aeebdee6f53d766c90d18de35db9acbc055b196"
 metafile = true
@@ -1191,6 +1201,11 @@ metafile = true
 [[files]]
 file = "mods/edivadlib.pw.toml"
 hash = "d47b5e5441de64d4d065ffac5c157535cf08ba2f7e84ee6c90d04c2ee532f322"
+metafile = true
+
+[[files]]
+file = "mods/elite-holograms.pw.toml"
+hash = "ced64333faa316c639fd8ee63b5e7a86a07d12f37851eaa08d960f3a400e9b61"
 metafile = true
 
 [[files]]
@@ -1489,6 +1504,11 @@ hash = "937c7ae4c8274ee0717546a2ca736099b1640a178b8f06027f62ca310517e413"
 metafile = true
 
 [[files]]
+file = "mods/neoforge-carpet.pw.toml"
+hash = "0035a21a9506d5187a372134cdc9ea8a3171db62e229cb7eb0ff505a1f928b0c"
+metafile = true
+
+[[files]]
 file = "mods/not-enough-crashes-forge.pw.toml"
 hash = "2644d6a7f1b4326fc7bee43f7478c13d2a74197be08123d82b4c3f3d1d3b0014"
 metafile = true
@@ -1539,11 +1559,6 @@ hash = "562fd159f33564daf4f81a313e3df5272678bf0824192513cac6e67656abf681"
 metafile = true
 
 [[files]]
-file = "mods/project-mmo.pw.toml"
-hash = "e07269bfa2becb4478c2bc16ec4eb26ba3bc68cf2660ba0b472f60e5372a27e0"
-metafile = true
-
-[[files]]
 file = "mods/quark.pw.toml"
 hash = "4eb683644ee4e38e00b06df946b71ad8fedaa860fcabbd91ec6ceb71c65b8d81"
 metafile = true
@@ -1581,6 +1596,11 @@ metafile = true
 [[files]]
 file = "mods/selene.pw.toml"
 hash = "58650be97623a6bf442f76994776ebd9d9dd46bb264ee64c2cf8ae85457cd40f"
+metafile = true
+
+[[files]]
+file = "mods/skills.pw.toml"
+hash = "ea1f06bccc7b4c07d72b803ee135eaf936ede51f5f2e13b7421a0e739da1b696"
 metafile = true
 
 [[files]]
