@@ -1,0 +1,13 @@
+name = "Bobo Lib"
+filename = "bobo_lib-1.1-1.20.1-forge.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "d9f762b50dd5373ea2d6bb13b1b27c64388eae69"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8259690
+project-id = 1514973

@@ -1,0 +1,13 @@
+name = "Crysis Legacy"
+filename = "crysis_legacy-1.1.0-1.20.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "40cd61deac27f8a9c0506ced3d950fb9bceb7721"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8337991
+project-id = 1588013

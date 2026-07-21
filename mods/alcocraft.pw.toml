@@ -1,0 +1,13 @@
+name = "AlcoCraft+"
+filename = "alcocraftplus-1.20-2.1.1-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/6t2MdNbo/versions/3EeTuQfw/alcocraftplus-1.20-2.1.1-forge.jar"
+hash-format = "sha512"
+hash = "cfcbffad3a2d3cd3f737ebee8e12b25ce290c272ba5b3fa0c6de0e99497616c35ec27243002e227d99f039883800152a17fc255609f09c6dbeb01b0b9b29b585"
+
+[update]
+[update.modrinth]
+mod-id = "6t2MdNbo"
+version = "3EeTuQfw"

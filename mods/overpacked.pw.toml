@@ -1,0 +1,13 @@
+name = "Overpacked"
+filename = "overpacked-2.0.1-1.20.1-forge.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "22adc4b78d516356bea5cab3f5c3e91c2c5c4445"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8300537
+project-id = 1432167

@@ -1,0 +1,13 @@
+name = "Icarus: Re-Winged"
+filename = "icarusrewinged-1.1.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "b08addd58c5648074a47cd662c5dce7e6c27c018"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8333468
+project-id = 1584283
