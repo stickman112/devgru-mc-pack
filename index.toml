@@ -1059,11 +1059,6 @@ hash = "95e1e53b02444a363aef8e309fd75422bae1d8844ddf681ba8750f8e6d3e1942"
 metafile = true
 
 [[files]]
-file = "mods/better-weaponry.pw.toml"
-hash = "b773ab1dae0aaa5843b52736a62b0abcabf4ef5e9329edce33d8eea42f5fb4db"
-metafile = true
-
-[[files]]
 file = "mods/bobo-lib.pw.toml"
 hash = "0f0e5846b108ac2f0a7ba78e54c88540fec6076af2db9da4fb6d892bc05184b8"
 metafile = true

@@ -22,6 +22,10 @@ non-CurseForge (Modrinth/url) mod as a jar in `overrides/mods/`, which
 This converter replaces each bundlable mod with a CurseForge manifest reference
 at its exact pinned version, so the shipped zip carries no third-party jars.
 
+As of pack identity 206 mods (182 both / 17 client / 7 server; server pull 189,
+client pull 199), Better Weaponry has been removed (devgru-mc-pack#4) and the
+`unmapped` list is empty, so every side-relevant jar now has a CF mapping.
+
 ## Usage
 
 ```
@@ -55,16 +59,20 @@ re-check it rather than trusting it.
 
 ## Two modes
 
-**Published upload (strip mode, default).** The 14 CF-mappable mods become
-manifest references; Better Weaponry is dropped (it has no CF project, is not on
-the Approved Non-CurseForge Mods list, and cannot ship bundled). `overrides/mods/`
-ends up empty. A published-pack client must install Better Weaponry manually
-(Modrinth download into the profile `mods/` folder) or it fails the Forge
-handshake against the server. Document this in the CF pack description.
+With `unmapped` empty, the two modes are currently equivalent: nothing needs
+bundling, so both emit the same zip. Verified against a synthetic export
+2026-07-27, both modes exit 0 on an empty `unmapped` list.
 
-**Private Discord bridge zip (`--bundle-unmapped`).** Identical, except Better
-Weaponry stays bundled in `overrides/mods/` so the zip is complete (160 mods).
-For direct sharing with the whitelisted group only, never for public CF upload.
+**Published upload (strip mode, default).** The 14 CF-mappable mods become
+manifest references and `overrides/mods/` ends up empty. This is the shippable
+artifact. There is no manual-install footnote for the CF pack description any
+more; removing Better Weaponry is what bought that.
+
+**Private Discord bridge zip (`--bundle-unmapped`).** Currently a no-op, kept for
+the next time a mod lands with no CF project. It only diverges from strip mode
+when `unmapped` is non-empty, in which case those jars stay bundled in
+`overrides/mods/` and the zip is for the whitelisted group only, never for
+public CF upload.
 
 ## Notes
 
