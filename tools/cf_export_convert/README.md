@@ -29,7 +29,9 @@ packwiz curseforge export -o export.zip
 python3 tools/cf_export_convert/convert.py export.zip -o out.zip [--bundle-unmapped]
 ```
 
-Both modes produce a manifest with fileCount 159.
+Both modes produce a manifest with fileCount 199 (as of pack `c6a0d72`,
+2026-07-26; was 159 at the 1.20.1-r1 release). This number moves with the pack;
+re-check it rather than trusting it.
 
 - `convert.py` removes the mapped jars from `overrides/mods/`, appends their
   `{projectID, fileID, required:true}` to `manifest.json`, and sets manifest
@@ -53,7 +55,7 @@ Both modes produce a manifest with fileCount 159.
 
 ## Two modes
 
-**Published upload (strip mode, default).** The 10 CF-mappable mods become
+**Published upload (strip mode, default).** The 14 CF-mappable mods become
 manifest references; Better Weaponry is dropped (it has no CF project, is not on
 the Approved Non-CurseForge Mods list, and cannot ship bundled). `overrides/mods/`
 ends up empty. A published-pack client must install Better Weaponry manually
