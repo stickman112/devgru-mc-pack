@@ -40,6 +40,16 @@ Both modes produce a manifest with fileCount 159.
   re-verify ids when a mapped mod's pinned version changes.**
 - Safety guard: the converter refuses to run if `overrides/mods/` contains any
   jar not listed in the mapping, so it never ships an unmapped jar blind.
+- **Keep the mapping in step with the pack, and do it at add time.** Any mod that
+  is Modrinth-sourced or otherwise not a CF reference gets bundled into
+  `overrides/mods/` on export, so it needs a mapping entry. The failure mode of
+  forgetting is SILENT until someone next tries to publish: the guard refuses,
+  which is correct, but discovery lags the pack change arbitrarily. Observed
+  2026-07-26, when four unmapped jars (`alcocraftplus`, `fdbosses`, and both
+  Let's Do jars) had accumulated since `d08ae86` and the artifact had been
+  un-generatable for five days with no signal. After any mod add, run the export
+  plus converter as a dry check, or at minimum grep the new filenames against
+  `cf_mapping.json`.
 
 ## Two modes
 
