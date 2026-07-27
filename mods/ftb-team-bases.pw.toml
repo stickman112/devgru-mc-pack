@@ -1,0 +1,13 @@
+name = "FTB Team Bases"
+filename = "ftb-team-bases-20.1.3.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "8ee46ab93c935c9b4032fb766dd9e3279b8d42b7"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7880652
+project-id = 1197857

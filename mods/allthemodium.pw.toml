@@ -1,0 +1,13 @@
+name = "Allthemodium"
+filename = "allthemodium-1.20.1-47.1.25-2.5.7.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "c67fb337f052705a34de76252149224e2e62c2f2"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7142820
+project-id = 364466
