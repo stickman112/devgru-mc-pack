@@ -78,6 +78,31 @@ when `unmapped` is non-empty, in which case those jars stay bundled in
 `overrides/mods/` and the zip is for the whitelisted group only, never for
 public CF upload.
 
+## Share codes are not this artifact
+
+A CurseForge share/profile code is generated from a CF app instance, and it
+exports the app's own `installedAddons` list out of `minecraftinstance.json`.
+It does NOT read the instance's `mods/` folder. Any jar the app has not
+fingerprinted into that list is invisible to the code, even though it sits on
+disk and loads fine locally.
+
+That is not hypothetical. On 2026-07-27 a staged instance held 199 jars while
+`installedAddons` held 190, with `cachedScans` empty. The generated code
+delivered exactly those 190 to an importing machine: the 10 untracked jars were
+absent, and one stale entry that was in the list but no longer on disk was
+present. Two of the 10 register network channels, so the imported client was
+rejected by the server's FML handshake until those jars were copied in by hand.
+
+Consequences worth keeping in mind:
+
+- A share code is only as complete as the CF app's fingerprint state. Counting
+  jars in `mods/` does not verify it. Compare against `installedAddons`.
+- The `manifest` blob embedded in `minecraftinstance.json` is a third thing
+  again and can be stale independently. It held 133 entries in the same
+  instance, and it is not what the code ships.
+- This converter's output does not share that failure mode. It is generated
+  from the packwiz manifest, so its file list is the pack by construction.
+
 ## Notes
 
 - `allowModDistribution=false` on some mapped mods does not block the CF-app
