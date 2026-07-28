@@ -33,9 +33,13 @@ packwiz curseforge export -o export.zip
 python3 tools/cf_export_convert/convert.py export.zip -o out.zip [--bundle-unmapped]
 ```
 
-Both modes produce a manifest with fileCount 199 (as of pack `c6a0d72`,
-2026-07-26; was 159 at the 1.20.1-r1 release). This number moves with the pack;
-re-check it rather than trusting it.
+Both modes produce a manifest with fileCount **199**, read off the actual
+1.20.1-r3 export (pack `d363701`, 2026-07-27). It was also 199 at 1.20.1-r2
+(`c6a0d72`) and 159 at 1.20.1-r1, but the r2 and r3 figures do NOT mean the same
+thing: r2 was 199 of 200 client mods, one short because Better Weaponry had to be
+stripped, while r3 is 199 of 199 with nothing dropped. An unchanged number here is
+not evidence the export was a no-op. This number moves with the pack; re-check it
+rather than trusting it.
 
 - `convert.py` removes the mapped jars from `overrides/mods/`, appends their
   `{projectID, fileID, required:true}` to `manifest.json`, and sets manifest
@@ -76,11 +80,17 @@ public CF upload.
 
 ## Notes
 
-- `allowModDistribution=false` on 6 of the 10 mapped mods does not block the
-  CF-app path: a CF manifest reference downloads from CurseForge's own CDN via
-  the first-party app, which ignores that flag. Only a third-party CF-import
-  launcher (Prism/MultiMC) would prompt manual download for those 6, so this zip
-  is fit for the CF-app path specifically.
+- `allowModDistribution=false` on some mapped mods does not block the CF-app
+  path: a CF manifest reference downloads from CurseForge's own CDN via the
+  first-party app, which ignores that flag. Only a third-party CF-import launcher
+  (Prism/MultiMC) would prompt a manual download for those specific mods, so this
+  zip is fit for the CF-app path specifically. **The per-mod tally is UNVERIFIED
+  and deliberately not stated.** The previous "6 of the 10" figure was written
+  2026-07-15 when `mapped` held 10 entries; `mapped` is now **14** (counted from
+  `cf_mapping.json`, 2026-07-27). The flags themselves could NOT be re-checked on
+  2026-07-27: both the curse.tools proxy and first-party `api.curseforge.com`
+  returned CloudFront edge 403s from this host, so the old numerator was neither
+  confirmed nor refuted. Re-count both numbers before quoting either.
 - Release-flow placement: the canonical pack push to GitHub Pages is the source
   of truth for Prism clients and the dedicated Forge server. This CF artifact is
   regenerated from the pack whenever it changes and shared out-of-band (CF upload
