@@ -33,13 +33,22 @@ packwiz curseforge export -o export.zip
 python3 tools/cf_export_convert/convert.py export.zip -o out.zip [--bundle-unmapped]
 ```
 
-Both modes produce a manifest with fileCount **199**, read off the actual
-1.20.1-r3 export (pack `d363701`, 2026-07-27). It was also 199 at 1.20.1-r2
+Both modes produce a manifest whose file list is **198 entries**, read off the actual
+export at pack `4051d3f` (2026-07-31). **There is no `fileCount` key in `manifest.json`;
+the number is `len(files)`.** Earlier revisions of this README called it "fileCount",
+which sends readers looking for a field that does not exist. It was 199 at 1.20.1-r3
+(`d363701`), 199 at 1.20.1-r2
 (`c6a0d72`) and 159 at 1.20.1-r1, but the r2 and r3 figures do NOT mean the same
 thing: r2 was 199 of 200 client mods, one short because Better Weaponry had to be
 stripped, while r3 is 199 of 199 with nothing dropped. An unchanged number here is
 not evidence the export was a no-op. This number moves with the pack; re-check it
 rather than trusting it.
+
+The r3 to 198 drop is the 2026-07-31 pack change: three `both` mods removed, two `both`
+added, and DimensionLock added as `side = "server"` so it is correctly absent from the
+CLIENT export. The FTB Ranks add later the same day did NOT move it again, also because
+it is `side = "server"`. Client-pull was re-derived and confirmed by a real export both
+times rather than carried forward.
 
 - `convert.py` removes the mapped jars from `overrides/mods/`, appends their
   `{projectID, fileID, required:true}` to `manifest.json`, and sets manifest
