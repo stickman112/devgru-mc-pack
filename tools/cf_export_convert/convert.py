@@ -15,6 +15,11 @@ Better Weaponry has no CurseForge project, so it cannot become a reference:
   - --bundle-unmapped: keep the BW jar bundled in overrides (private Discord
     bridge zip only, not for public upload).
 
+Alongside the zip it also writes a paste-ready release-notes text file, pulled
+from CHANGELOG.md at the pack root by matching the version heading, so the
+staging folder always holds the artifact and the text that goes in the
+CurseForge file description together. OUT.zip yields OUT-release-notes.txt.
+
 stdlib only. Usage:
   convert.py EXPORT.zip -o OUT.zip [--bundle-unmapped] [--mapping cf_mapping.json]
 """
@@ -50,6 +55,69 @@ def override_mod_jars(zf):
         if name.startswith(MODS_PREFIX) and name.lower().endswith(".jar"):
             out[os.path.basename(name)] = name
     return out
+
+
+def find_pack_root(start):
+    """Walk up from `start` looking for pack.toml, which marks the pack root.
+
+    Deliberately not a hardcoded relative path: the script keeps working if the
+    tools directory is ever moved or the repo is checked out somewhere else.
+    """
+    d = os.path.abspath(start)
+    while True:
+        if os.path.isfile(os.path.join(d, "pack.toml")):
+            return d
+        parent = os.path.dirname(d)
+        if parent == d:
+            return None
+        d = parent
+
+
+def extract_release_notes(changelog_path, version):
+    """Return the paste-ready block for `version` from CHANGELOG.md, or None.
+
+    Matches a '## <version>' heading, then returns the contents of the first
+    fenced block beneath it. The heading and the fences are stripped, so what
+    lands on disk is exactly what gets pasted into the CurseForge file
+    description with no editing.
+    """
+    try:
+        with open(changelog_path, "r", encoding="utf-8") as fh:
+            lines = fh.read().splitlines()
+    except OSError:
+        return None
+
+    target = "## " + version
+    i = 0
+    while i < len(lines) and lines[i].strip() != target:
+        i += 1
+    if i >= len(lines):
+        return None
+
+    # Find the opening fence, but stop if the next release heading arrives first.
+    while True:
+        i += 1
+        if i >= len(lines):
+            return None
+        stripped = lines[i].strip()
+        if stripped.startswith("## "):
+            return None
+        if stripped.startswith("```"):
+            break
+
+    body = []
+    i += 1
+    while i < len(lines) and not lines[i].strip().startswith("```"):
+        body.append(lines[i])
+        i += 1
+    if i >= len(lines):
+        return None  # unterminated fence
+    return "\n".join(body).strip("\n") + "\n"
+
+
+def notes_path_for(output_zip):
+    base = output_zip[:-4] if output_zip.lower().endswith(".zip") else output_zip
+    return base + "-release-notes.txt"
 
 
 def main():
@@ -128,10 +196,39 @@ def main():
                 else:
                     out.writestr(item, zf.read(item.filename))
 
+    # --- sibling release-notes file, so the paste text ships beside the zip ---
+    # version comes from cf_mapping.json manifest.version, applied to the
+    # manifest above; this is the same value the zip carries.
+    version = manifest.get("version", "")
+    notes_out = notes_path_for(args.output)
+    root = find_pack_root(os.path.dirname(os.path.abspath(__file__)))
+    changelog = os.path.join(root, "CHANGELOG.md") if root else None
+    notes = extract_release_notes(changelog, version) if changelog else None
+
+    if notes:
+        with open(notes_out, "w", encoding="utf-8") as fh:
+            fh.write(notes)
+    else:
+        where = changelog or "(CHANGELOG.md not found: no pack.toml above this script)"
+        sys.stderr.write(
+            "\n" + "!" * 72 + "\n"
+            "WARNING: NO RELEASE NOTES WRITTEN.\n"
+            "  Looked for a '## %s' section with a fenced block in:\n"
+            "    %s\n"
+            "  The zip is complete and usable. Either add that section to\n"
+            "  CHANGELOG.md and re-run, or write the CurseForge file description\n"
+            "  by hand.\n"
+            "  Deliberately NOT writing a placeholder: an empty or templated notes\n"
+            "  file is exactly the thing that gets pasted into CurseForge by\n"
+            "  mistake.\n" % (version, where)
+            + "!" * 72 + "\n\n"
+        )
+
     # --- summary ---
     print("cf_export_convert: mode=%s" % mode)
     print("  input : %s" % args.export_zip)
     print("  output: %s" % args.output)
+    print("  notes : %s" % (notes_out if notes else "NOT WRITTEN (see warning above)"))
     print("  manifest files: %d -> %d (added %d CF references)" % (base_count, len(files), len(added)))
     print("  mapped jars removed from overrides: %d" % len(drop_mapped(mapped, present)))
     if mode == "strip":

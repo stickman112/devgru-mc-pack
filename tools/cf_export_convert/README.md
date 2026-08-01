@@ -33,6 +33,33 @@ packwiz curseforge export -o export.zip
 python3 tools/cf_export_convert/convert.py export.zip -o out.zip [--bundle-unmapped]
 ```
 
+## The converter emits TWO files, and both belong in the staging folder
+
+Alongside the zip it writes a paste-ready release-notes text file, named to match:
+`DEVG-MC-1.20.1-r4.zip` yields `DEVG-MC-1.20.1-r4-release-notes.txt`. The text is
+pulled from `CHANGELOG.md` at the pack root by matching the `## <version>` heading
+and taking the fenced block beneath it, with the heading and fences stripped, so
+the file contents are exactly what gets pasted into the CurseForge file
+description with no editing.
+
+**The staging folder should always end up holding the zip and its notes together.**
+That is the whole point: r3 kept the artifact and its paste text in one folder, an
+r4 change briefly split them, and the upload step then depended on remembering to
+go and find the text in the repo. Point `-o` at the staging directory and both
+files land there.
+
+The version comes from `cf_mapping.json` `manifest.version`, the same value the zip
+carries, so the notes cannot describe a different release than the artifact.
+
+`CHANGELOG.md` is located by walking up from the script until `pack.toml` is found,
+not by a hardcoded relative path, so moving this directory does not break it.
+
+**If no matching section exists**, the converter prints a loud warning, still writes
+the zip, and deliberately writes **no** notes file. An empty or templated notes file
+is exactly the thing that gets pasted into CurseForge by mistake, so its absence is
+the safer failure. Add the section to `CHANGELOG.md` and re-run, or write the
+description by hand.
+
 Both modes produce a manifest whose file list is **198 entries**, read off the actual
 export at pack `4051d3f` (2026-07-31). **There is no `fileCount` key in `manifest.json`;
 the number is `len(files)`.** Earlier revisions of this README called it "fileCount",
