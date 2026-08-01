@@ -1,0 +1,13 @@
+name = "dimensionlock"
+filename = "dimensionlock1.0.1.jar"
+side = "server"
+
+[download]
+hash-format = "sha1"
+hash = "7721cd7999b06c20980d3c277af2dd3110d0c618"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 6771522
+project-id = 1307285
