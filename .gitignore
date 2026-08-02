@@ -2,3 +2,6 @@
 
 # Claude Code context file (local only, not published)
 CLAUDE.md
+
+# Python bytecode from running tools/ scripts in place
+__pycache__/

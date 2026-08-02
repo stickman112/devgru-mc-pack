@@ -22,9 +22,12 @@ non-CurseForge (Modrinth/url) mod as a jar in `overrides/mods/`, which
 This converter replaces each bundlable mod with a CurseForge manifest reference
 at its exact pinned version, so the shipped zip carries no third-party jars.
 
-As of pack identity 206 mods (182 both / 17 client / 7 server; server pull 189,
-client pull 199), Better Weaponry has been removed (devgru-mc-pack#4) and the
-`unmapped` list is empty, so every side-relevant jar now has a CF mapping.
+Better Weaponry has been removed (devgru-mc-pack#4) and the `unmapped` list is
+empty, so every side-relevant jar now has a CF mapping. Pack identity moves with
+every mod change and is deliberately NOT restated here; derive it with
+`tools/client_drift_check/check.py`, which prints `total entries` and
+`expected client-side` off the live pack, or read the canonical Forge block in
+dotfiles `minecraft_server_context.md`.
 
 ## Usage
 
@@ -138,6 +141,91 @@ Consequences worth keeping in mind:
   instance, and it is not what the code ships.
 - This converter's output does not share that failure mode. It is generated
   from the packwiz manifest, so its file list is the pack by construction.
+
+## Release verification: the two-instance model
+
+Two CF app instances exist on the maintainer's Mac and they serve different
+purposes. Confusing them is how a bad artifact ships.
+
+|  | Authoring instance | Subscriber instance |
+|---|---|---|
+| Disk directory | `DEVGRU MC` | `DEVG World` |
+| App display name | `DEVG World_Local Test` | `DEVG World` |
+| Installed from | packwiz sync plus hand-staging | the published CF project file |
+| Mutable | yes, by design | no, treat as read-only |
+| Used for | team share codes, internal testing | release verification only |
+| Exported from | share codes | nothing |
+
+**Display names and directory names diverge.** The authoring instance was renamed in
+the app on 2026-08-02 and its directory did NOT follow. Identify an instance by inode
+and by the contents of `minecraftinstance.json` (`name`, `manifest.version`,
+`projectID`/`fileID`), never by directory name or app label. The gaming PC's instance
+directory is ALSO named `DEVGRU MC`, so the same rule applies there.
+
+### The procedure, from r5 onward
+
+Run against the SUBSCRIBER instance after updating the subscription. Never against the
+authoring instance: it is mutable by design, so a pass there proves nothing about what
+subscribers receive.
+
+**1. Directory identity, BEFORE counting anything.** Any instance claimed to be freshly
+installed must have a birth timestamp of today and an inode different from the previous
+one.
+
+    stat -f 'inode=%i birth=%SB mtime=%Sm' "<instance>"
+
+This precondition exists because on 2026-08-02 a reinstall was reported as done three
+times before it actually landed on disk, and the stale directory would have passed every
+count-based check below.
+
+**2. Settledness.** Newest mtime in `mods/`, plus absence of `.part`, `.crdownload`,
+`.partial` and zero-byte files. A mid-install count reads low and is indistinguishable
+from real drift.
+
+**3. Set equality, NOT count equality.** Diff every `installedAddons` filename against
+every `.jar` on disk, in BOTH directions.
+
+    python3 - <<'PY'
+    import json, os
+    P = "<instance>"
+    d = json.load(open(os.path.join(P, "minecraftinstance.json")))
+    addons = {a.get("fileNameOnDisk") or (a.get("installedFile") or {}).get("fileName")
+              for a in d.get("installedAddons") or []}
+    disk = {f for f in os.listdir(os.path.join(P, "mods")) if f.endswith(".jar")}
+    print("in addons, not on disk:", sorted(addons - disk))
+    print("on disk, not in addons:", sorted(disk - addons))
+    PY
+
+Count agreement is NOT sufficient. On 2026-08-02 the known-bad hand-edited authoring
+instance read 198 jars against 198 `installedAddons` and would have passed a numeric
+test while being the wrong set entirely.
+
+**Expected asymmetry of exactly one entry.** A manifest-installed instance lists the
+pack's own zip in `installedAddons` (category Modpacks, `packageType` 5, pathed to
+`downloads/`, with `addonID`/`fileID` equal to the instance's own `projectID`/`fileID`).
+So `installedAddons` reads N+1 against N jars and that is CORRECT, not drift. Anything
+beyond that single zip is real.
+
+**4. Independent folder check** against the live pack.
+
+    python3 tools/client_drift_check/check.py "<instance>/mods"
+
+Expect exit 0 and "instance matches the live pack exactly".
+
+Steps 3 and 4 prove different things and both are needed: step 4 proves the folder
+matches the pack, step 3 proves the app's own list matches the folder. The 2026-07-27
+failure passed a folder check and still shipped the wrong set.
+
+### Caveat: an owner-machine install does not exercise CDN delivery
+
+The CF app populates a new install by COPYING from its local library when it already
+holds the pinned files, rather than downloading them. On the 2026-08-02 r4 verification
+all 198 jars arrived with mtimes spanning May through July, preserved from the local
+library, with fresh inodes and `nlink=1` (so they were independent copies, not
+hardlinks). The resulting SET is still correct, because the app resolves the manifest's
+pinned `projectID`/`fileID` references, but the install would have succeeded even if a
+referenced file were unavailable to a fresh downloader. **A true cold install on a
+library-clean machine is the only test of that path.** Tracked as devgru-mc-pack#12.
 
 ## Notes
 

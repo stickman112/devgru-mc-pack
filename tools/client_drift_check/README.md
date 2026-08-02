@@ -11,6 +11,9 @@ Exit 0 clean or cosmetic, 1 something will block, 2 usage or fetch error.
 - **After any pack change that removes a mod with `side = "both"` or `side = "client"`.**
   Before telling anyone the server is ready to join.
 - Before generating a CurseForge share code.
+- As step 4 of release verification against the SUBSCRIBER instance. See
+  `tools/cf_export_convert/README.md`, "Release verification: the two-instance model",
+  for the full procedure and for why a folder check alone is not sufficient.
 - Any time a player reports being unable to connect after a pack change.
 
 ## Why it exists
@@ -45,6 +48,32 @@ Missing jars are reported but **not** classified. A missing jar is not a lockout
 own: it only blocks if that mod registers a channel or registry entries and does not
 relax `displayTest`. Classifying it would require reading the jar, which is not present,
 and a `metadata:curseforge` pin carries no download URL to fetch it with.
+
+## A failed fetch exits 2, it never masquerades as drift
+
+Worth knowing, because the expected set is assembled from roughly 200 sequential HTTP
+fetches and the endpoint does fail transiently. A 503 from GitHub Pages and a timeout
+to github.com were both observed on 2026-08-02. A partial fetch that silently shrank
+the expected set would surface as EXTRA jars in the instance, which is
+indistinguishable from real drift.
+
+That cannot happen here. `urlopen` raises `HTTPError` on a non-200 and `TimeoutError`
+on a timeout. Both propagate out of `ThreadPoolExecutor.map` when the results are
+iterated in `load_live_pack`, and `main` catches them with
+`except (urllib.error.URLError, RuntimeError, OSError)`, returning **exit 2**.
+`HTTPError` subclasses `URLError`, which subclasses `OSError`, so every network
+failure mode lands in that one handler.
+
+So the two counts it prints are either complete or the run never gets far enough to
+print them (sample output from the 2026-08-02 r4 verification; both figures move with
+the pack, so read them off your own run rather than from this example):
+
+    live pack: https://stickman112.github.io/devgru-mc-pack/pack.toml
+      total entries 207 | expected client-side 198
+
+A run that reaches the EXTRA and MISSING report assembled a full expected set. Quote
+those two numbers when reporting a result; they are what makes the verdict auditable
+after the fact.
 
 ## Note on this file
 
