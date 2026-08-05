@@ -2,7 +2,7 @@
   "_comment": "CurseForge id mapping for cf_export_convert. Each mapped mod is a Modrinth-sourced side=both jar that packwiz bundles into overrides/mods on a curseforge export; the converter replaces the bundled jar with a CF manifest reference at the exact pinned version (matched by exact filename, Gate 1 2026-07-15). unmapped mods have no CF project and cannot become references. Bump manifest.version per published release.",
   "manifest": {
     "name": "DEVG World",
-    "version": "1.20.1-r4",
+    "version": "1.20.1-r5",
     "author": "stickman112"
   },
   "mapped": [
