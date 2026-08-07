@@ -8,6 +8,49 @@ upload, reproduced verbatim so the published notes and this file cannot drift.
 Operator documentation (upload steps, share code procedure, known issues, handshake
 mechanics) is maintained separately and is not part of this repo.
 
+## 1.20.1-r5
+
+```
+DEVG MC 1.20.1-r5
+
+REQUIRED UPDATE. You cannot join the server on r4.
+
+Removed:
+  Timeless and Classics Zero (TACZ) 1.1.8 - the gun mod, removed by team
+    decision ahead of launch.
+  LuckPerms - server side only, nothing to download. Permissions and player
+    limits are now handled entirely by FTB Ranks.
+  Better Forge Chat Reborn - server side only. Chat timestamps, markdown
+    styling, /r and /colors go with it.
+
+Item loss notice:
+  Removing TACZ deletes all of its items from the world. Guns, ammo,
+  attachments and any placed TACZ blocks are gone and are not recoverable.
+  Nothing else in the world is affected.
+
+Harmless leftovers:
+  If you had TACZ installed you will still have an inert tacz/ folder and a
+  couple of dead config files in your instance. They do nothing and are safe
+  to delete or ignore. Installing fresh from the new share code gives you
+  neither.
+
+Rank names:
+  Rank name colours from FTB Ranks now render in chat, the tab list and
+  /list. Admin formatting is already live. Tier assignments for Trusted,
+  Moderator and Developer roll out shortly, so most names will show
+  [Default] at first.
+
+Also on the server, nothing to download:
+  Command blocks are enabled.
+  The Nether is closed. Nether portals no longer work.
+  The Industrial Foregoing Infinity Nuke can no longer be crafted. The ban is
+    reapplied on every server start.
+
+How to update:
+  Install fresh from the new share code. Do not repair an existing instance by
+  hand.
+```
+
 ## 1.20.1-r4
 
 ```
