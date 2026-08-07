@@ -5,3 +5,7 @@ CLAUDE.md
 
 # Python bytecode from running tools/ scripts in place
 __pycache__/
+
+# Build artifacts: pack exports, converted CF zips, release-notes text.
+# Regenerable; never committed. See tools/cf_export_convert/README.md.
+dist/

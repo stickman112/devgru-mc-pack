@@ -32,9 +32,17 @@ dotfiles `minecraft_server_context.md`.
 ## Usage
 
 ```
-packwiz curseforge export -o export.zip
-python3 tools/cf_export_convert/convert.py export.zip -o out.zip [--bundle-unmapped]
+packwiz curseforge export -o dist/export.zip
+python3 tools/cf_export_convert/convert.py dist/export.zip \
+    -o dist/DEVG-MC-<version>.zip [--bundle-unmapped]
+rm dist/export.zip
 ```
+
+`dist/` is the staging folder and is gitignored and packwizignored, so build
+artifacts never land in the repo root and `packwiz refresh` never indexes them.
+Create it if missing (`mkdir -p dist`). The intermediate export zip is large
+(tens of MB, it still carries the bundled jars) and is not worth keeping once
+the converted artifact exists.
 
 ## The converter emits TWO files, and both belong in the staging folder
 
