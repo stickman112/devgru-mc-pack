@@ -31,13 +31,12 @@ Item loss notice:
 Harmless leftovers:
   If you had TACZ installed you will still have an inert tacz/ folder and a
   couple of dead config files in your instance. They do nothing and are safe
-  to delete or ignore. Installing fresh from the new share code gives you
-  neither.
+  to delete or ignore.
 
 Rank names:
-  Rank name colours from FTB Ranks now render in chat, the tab list and
+  Rank name colors from FTB Ranks now render in chat, the tab list and
   /list. Admin formatting is already live. Tier assignments for Trusted,
-  Moderator and Developer roll out shortly, so most names will show
+  Moderator and Developer will roll out as mods finish them, so most names will show
   [Default] at first.
 
 Also on the server, nothing to download:
@@ -45,10 +44,6 @@ Also on the server, nothing to download:
   The Nether is closed. Nether portals no longer work.
   The Industrial Foregoing Infinity Nuke can no longer be crafted. The ban is
     reapplied on every server start.
-
-How to update:
-  Install fresh from the new share code. Do not repair an existing instance by
-  hand.
 ```
 
 ## 1.20.1-r4
