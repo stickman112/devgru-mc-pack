@@ -1381,11 +1381,6 @@ hash = "ea95bfed9218f9f2636f91a123f2fe7b560467a89d1fe32bc1d9d823bc7a398a"
 metafile = true
 
 [[files]]
-file = "mods/ftb-team-bases.pw.toml"
-hash = "17b7adb81eebbdf151ef846be6079368b97eab5bf6de96adaeb883dbdf6d791c"
-metafile = true
-
-[[files]]
 file = "mods/ftb-teams-forge.pw.toml"
 hash = "efda76423b21f9bfab4ad8d0411f0b06a199ab7e3e12ca16dc0586c1828b8f07"
 metafile = true
